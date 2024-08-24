@@ -2,6 +2,9 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
+		fontFamily: {
+			"body": "Source Sans Pro"
+		},
 		colors: {
 			'ebony-clay': {
 				'50': '#f2f6fc',
