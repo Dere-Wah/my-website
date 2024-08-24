@@ -26,42 +26,44 @@ import Contact from "../components/Contact.astro";
 				DereWah - Lorem ipsum pipsum lorem
 			</h2>
 		</div>
-		<Paragraph title="About me" upper>
-				<p>
-					My name is <span class="font-bold">Dere</span>
-					and I am
-					<AgeDisplay client:load />
-					old.
-				I currently study <Shield
-					text="Computer Engineering"
-					icon="noto:books"
-				/> in
-				<Shield
-					text="Milan"
-					icon="twemoji:flag-italy"
-					url="https://it.wikipedia.org/wiki/Italia"
-				/>
-				at <Shield
-					text="Politecnico di Milano"
-					icon="noto:classical-building"
-					url="https://www.polimi.it/"
-				/>. In my free time (when I don't study, basically), I love to dive deep in projects ideas with the goal of learning new technologies.
-				</p>
-				<p class="italic font-normal text-sm opacity-50">
-				This website is my first ever attempt at something I was always afraid of: web development.</p>
-		</Paragraph>
-		<Paragraph title="Contact Me" upper>
-			<div class="w-fit flex content-center flex-row mt-3">
-				<Contact icon="mdi:linkedin" link="https://www.linkedin.com/in/davide-locatelli-91a360304/"></Contact>
-				<Contact icon="mdi:telegram" link="https://t.me/DereWah"></Contact>
-				<Contact icon="mdi:github" link="https://github.com/Dere-Wah"></Contact>
-				<Contact icon="mdi:email" link="mailto:derexcontact@gmail.com"></Contact>
-			</div>
-		</Paragraph>
-		<Paragraph title="My Projects" upper>
-			Below you can find some of the projects I've worked on in these years. Some are interesting, some are crap, some are just cringe.
-			I've warned you, proceed with caution.
-		</Paragraph>
+		<div class="w-[600px]">
+			<Paragraph title="About me" upper>
+					<p>
+						My name is <span class="font-bold">Dere</span>
+						and I am
+						<AgeDisplay client:load />
+						old.
+					I currently study <Shield
+						text="Computer Engineering"
+						icon="noto:books"
+					/> in
+					<Shield
+						text="Milan"
+						icon="twemoji:flag-italy"
+						url="https://it.wikipedia.org/wiki/Italia"
+					/>
+					at <Shield
+						text="Politecnico di Milano"
+						icon="noto:classical-building"
+						url="https://www.polimi.it/"
+					/>. In my free time (when I don't study, basically), I love to dive deep in projects ideas with the goal of learning new technologies.
+					</p>
+					<p class="italic font-normal text-sm opacity-50">
+					This website is my first ever attempt at something I was always afraid of: web development.</p>
+			</Paragraph>
+			<Paragraph title="Contact Me" upper>
+				<div class="w-fit flex content-center flex-row mt-3">
+					<Contact icon="mdi:linkedin" link="https://www.linkedin.com/in/davide-locatelli-91a360304/"></Contact>
+					<Contact icon="mdi:telegram" link="https://t.me/DereWah"></Contact>
+					<Contact icon="mdi:github" link="https://github.com/Dere-Wah"></Contact>
+					<Contact icon="mdi:email" link="mailto:derexcontact@gmail.com"></Contact>
+				</div>
+			</Paragraph>
+			<Paragraph title="My Projects" upper>
+				Below you can find some of the projects I've worked on in these years. Some are interesting, some are crap, some are just cringe.
+				I've warned you, proceed with caution.
+			</Paragraph>
+		</div>
 		<div class="w-full max-w-screen-lg overflow-x-auto">
 			<div class="flex flex-wrap justify-center gap-1 p-4">
 				<!-- Card components will go here -->
