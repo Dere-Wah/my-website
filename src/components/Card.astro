@@ -1,0 +1,25 @@
+---
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title } = Astro.props;
+const { description } = Astro.props;
+---
+
+<body>
+    <div
+        class="group w-64 h-40 scale-90 hover:scale-110 bg-ebony-clay-700 hover:bg-ebony-clay-400 rounded-md shadow-md transition-all ease duration-300 hover:cursor-pointer">
+        <div class="flex flex-col items-left">
+            <div
+                class="text-3xl font-bold text-ebony-clay-400 mt-2 mb-2 ml-4 group-hover:text-ebony-clay-950">
+                {title}
+            </div>
+            <div class="text-1xl font-medium text-ebony-clay-100 ml-4">
+                {description}
+            </div>
+        </div>
+    </div>
+</body>
+
