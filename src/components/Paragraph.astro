@@ -11,7 +11,7 @@ const { title, upper, lower} = Astro.props;
 ---
 
 <body>
-    <div class="flex flex-col items-center">{upper == true && <Divider></Divider>}</div>
+    {upper == true && <Divider></Divider>}
     <div class="flex flex-col items-start w-full">
         <div class="font-bold text-2xl text-ebony-clay-300">{title}</div>
         <div class="text-ebony-clay-100 font-normal text-lg"><slot></slot></div>
