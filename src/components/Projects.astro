@@ -6,7 +6,7 @@ const projects = await Astro.glob("../pages/projects/*.mdx");
 projects.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 ---
 
-<div class="flex w-full flex-col items-center gap-1">
+<div class="flex w-full flex-col items-start px-4">
     {projects.map((project) => (
         <Card title={project.frontmatter.title} description={project.frontmatter.description} tags={project.frontmatter.tags} href={project.url} date={project.frontmatter.date}/>
     ))}

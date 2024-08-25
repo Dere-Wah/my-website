@@ -10,10 +10,10 @@ const { title, subtitle} = Astro.props;
 ---
 
 <body>
-    <div class="flex flex-col items-start w-full">
+    <div class="flex flex-col items-start w-full px-5">
         <div class="font-bold text-2xl text-ebony-clay-300">{title}</div>
-        <div class="text-ebony-clay-100 leading-loose"><slot></slot></div>
-        <span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
+        <div class="text-ebony-clay-100 text-base/loose"><slot /></div>
+        {<span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
     </div>
     
 </body>
