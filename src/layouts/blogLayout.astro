@@ -1,11 +1,7 @@
 ---
 import Card from "../components/Card.astro";
-import Shield from "../components/Shield.astro";
-import Paragraph from "../components/Paragraph.astro";
-import AgeDisplay from "../components/AgeDisplay.jsx";
-import Contact from "../components/Contact.astro";
 
-const { title, description, frontmatter } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,15 +12,10 @@ const { title, description, frontmatter } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>DereWah</title>
+		<title>{frontmatter.title}</title>
 	</head>
 	<body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-800">
-		<div class="px-6 py-14">
-			<main class="flex flex-col w-full items-center">
-				<div class="max-w-[65ch] ">
-					<slot />
-				</div>
-			</main>
-		</div>
+		a
+        <slot></slot>
 	</body>
 </html>

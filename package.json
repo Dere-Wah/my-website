@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -30,6 +30,7 @@
     "@iconify-json/mdi": "^1.1.68",
     "@iconify-json/noto": "^1.1.20",
     "@iconify-json/ph": "^1.1.14",
-    "@iconify-json/twemoji": "^1.1.16"
+    "@iconify-json/twemoji": "^1.1.16",
+    "@tailwindcss/typography": "^0.5.14"
   }
 }

@@ -2,22 +2,32 @@
 interface Props {
     title: string;
     description: string;
+    tags: string[];
+    href?: string;
+    date: string;
 }
 
-const { title } = Astro.props;
-const { description } = Astro.props;
+const { title, description, tags, href, date} = Astro.props;
 ---
 
 <body>
-    <div
-        class="group aspect-[16/10] min-w-[300px] w-[70%] scale-90 hover:scale-110 bg-ebony-clay-700 hover:bg-ebony-clay-400 rounded-md shadow-md transition-all ease duration-300 hover:cursor-pointer">
-        <div class="flex flex-col items-left">
-            <div
-                class="text-3xl font-bold text-ebony-clay-400 mt-2 mb-2 ml-4 group-hover:text-ebony-clay-950">
+    <a href={href} class="group w-full aspect-[16/10] scale-90 hover:scale-110 bg-gradient-to-br from-ebony-clay-900 to-ebony-clay-800 hover:from-ebony-clay-400 rounded-md shadow-md transition-all ease duration-300 hover:cursor-pointer">
+        <div class="h-full flex flex-col justify-between py-8 px-4">
+            <div class="text-3xl font-bold text-ebony-clay-400 group-hover:text-ebony-clay-950">
                 {title}
             </div>
-            <div class="text-1xl font-medium text-ebony-clay-100 ml-4">
+            <div class="h-full text-2xl font-medium text-ebony-clay-100/50 py-4 group-hover:text-ebony-clay-950/80">
                 {description}
+            </div>
+            <div class="flex flex-row justify-end gap-3 flex-wrap">
+                {tags.map(tag => (
+                    <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">{tag}</div>
+                ))}
+            </div>
+            <div class="flex justify-start">
+                <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
+                    {date}
+                </div>
             </div>
         </div>
     </div>
