@@ -1,0 +1,38 @@
+---
+import Card from "../components/Card.astro";
+import Shield from "../components/Shield.astro";
+import Paragraph from "../components/Paragraph.astro";
+import AgeDisplay from "../components/AgeDisplay.jsx";
+import Contact from "../components/Contact.astro";
+
+const { title, description, frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>DereWah</title>
+	</head>
+	<body
+		class="flex flex-col items-center justify-start min-h-screen bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-800"
+	>
+		<div class="text-center mb-8">
+			<h1 class="text-ebony-clay-100 text-4xl font-extrabold mb-0">
+				{frontmatter.title}
+			</h1>
+			<h2 class="text-ebony-clay-50 text-xl">
+				{frontmatter.subtitle}
+			</h2>
+		</div>
+		<div
+			class="flex flex-col flex-nowrap items-center w-3/6 min-w-[400px] px-10 pt-5"
+		>
+			<slot />
+		</div>
+	</body>
+</html>

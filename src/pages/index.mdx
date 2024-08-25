@@ -1,0 +1,33 @@
+---
+layout: "@layouts/homeLayout.astro"
+title: "home"
+description: "Where am I?"
+subtitle: "pogchamp"
+---
+import Divider from "@components/Divider.astro"
+import AgeDisplay from "@components/AgeDisplay.jsx"
+import Paragraph from "@components/Paragraph.astro"
+import Shield from "@components/Shield.astro"
+import Links from "@components/Links.astro"
+import Projects from "@components/Projects.astro"
+
+
+<Paragraph subtitle="This website is my first ever attempt at something I was always afraid of: web development.">
+My name is **Dere** and I am <AgeDisplay client:load /> old. I currently study <Shield icon="noto:books">Comp. Engineering</Shield> in
+<Shield icon="twemoji:flag-italy" url="https://it.wikipedia.org/wiki/Italia">Milan</Shield> at
+<Shield icon="noto:classical-building" url="https://www.polimi.it/">Politecnico di Milano</Shield>.
+In my free time I love to dive deep in projects ideas with the goal of learning new technologies.
+</Paragraph>
+<Divider />
+<Links />
+<Divider />
+<Paragraph title="My Projects">
+Below you can find some of the projects I've worked on in these years. Some are interesting, some are crap, some are just cringe.
+I've warned you, proceed with caution.
+<Projects />
+</Paragraph>
+			
+
+
+
+

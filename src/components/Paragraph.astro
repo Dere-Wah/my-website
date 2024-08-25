@@ -3,19 +3,17 @@ import { boolean } from "astro/zod";
 import Divider from "../components/Divider.astro"
 interface Props {
     title: string;
-    upper?: boolean;
-    lower?: boolean;
+    subtitle?: string
 }
 
-const { title, upper, lower} = Astro.props;
+const { title, subtitle} = Astro.props;
 ---
 
 <body>
-    {upper == true && <Divider></Divider>}
     <div class="flex flex-col items-start w-full">
         <div class="font-bold text-2xl text-ebony-clay-300">{title}</div>
         <div class="text-ebony-clay-100 leading-loose"><slot></slot></div>
+        <span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
     </div>
-    <div class="flex flex-col items-center">{lower == true && <Divider></Divider>}</div>
     
 </body>
