@@ -18,7 +18,7 @@ const { frontmatter } = Astro.props;
 		<title>{frontmatter.title}</title>
 	</head>
 	<body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-900">
-		<div class="py-14">
+		<div class="py-14 px-2">
 			<main class="flex flex-col items-center w-full h-full">
 				<div class="max-w-[65ch]">
 					<HomeButton />
@@ -29,7 +29,9 @@ const { frontmatter } = Astro.props;
 						</div>
 					</div>
 					<Divider />
-					<slot />
+					<div class="flex flex-col gap-8">
+						<slot />
+					</div>
 					<Divider />
 					<div class="flex flex-row justify-start gap-3 flex-wrap py-3">
 						{frontmatter.tags.map((tag: string) => (
