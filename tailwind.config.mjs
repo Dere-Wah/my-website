@@ -20,7 +20,30 @@ export default {
 				'950': '#1f2742',
 			},
 		},
-		extend: {},
+		extend: {
+			animation:{
+				fall: "fall 2s linear 1"
+			},
+			keyframes:{
+				fall: {
+					'0%': {
+					  transform: 'translateY(-25%)',
+					  animationTimingFunction: 'ease',
+					  opacity: "0%",
+					  "letter-spacing": "0.1em"
+					},
+					'80%': {
+					  animationTimingFunction: 'ease-in',
+					  opacity: "100%"
+					},
+					'100%': {
+					  transform: 'none',
+					  animationTimingFunction: 'ease-out',
+					  "letter-spacing": "-0.075em"
+					}
+				  },
+			}
+		},
 	},
 	plugins: [],
 }
