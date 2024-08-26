@@ -18,22 +18,22 @@ const { frontmatter } = Astro.props;
 		<title>{frontmatter.title}</title>
 	</head>
 	<body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-900">
-		<div class="py-14 px-2">
+		<div class="px-10 py-14">
 			<main class="flex flex-col items-center w-full h-full">
 				<div class="max-w-[65ch]">
 					<HomeButton />
 					<Paragraph title={frontmatter.title} subtitle={frontmatter.description}/>
 					<div class="flex justify-end">
-						<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
+						<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 mx-8 group-hover:text-ebony-clay-400 scale-110">
 							{frontmatter.date}
 						</div>
 					</div>
 					<Divider />
-					<div class="flex flex-col gap-8">
+					<div class="flex flex-col">
 						<slot />
 					</div>
 					<Divider />
-					<div class="flex flex-row justify-start gap-3 flex-wrap py-3">
+					<div class="flex flex-row justify-start gap-3 flex-wrap py-3 mx-4">
 						{frontmatter.tags.map((tag: string) => (
 							<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">{tag}</div>
 						))}

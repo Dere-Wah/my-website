@@ -9,11 +9,9 @@ interface Props {
 const { title, subtitle} = Astro.props;
 ---
 
-<body>
-    <div class="flex flex-col items-start w-full px-5">
-        <div class="font-bold text-2xl text-ebony-clay-300 pb-3">{title}</div>
-        <div class="text-ebony-clay-100 text-base/loose"><slot /></div>
-        {<span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
-    </div>
-    
-</body>
+
+<div class="flex flex-col items-start w-full px-4 my-4">
+    <div class="font-bold text-3xl text-ebony-clay-300 pb-3">{title}</div>
+    <div class="flex flex-col gap-4 text-ebony-clay-100 text-base/loose w-full"><slot /></div>
+    <span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
+</div>

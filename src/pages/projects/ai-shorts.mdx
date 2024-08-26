@@ -8,7 +8,10 @@ tags: ["AI", "Youtube"]
 import Divider from "@components/Divider.astro"
 import Paragraph from "@components/Paragraph.astro"
 import { Image } from 'astro:assets';
+
+
 import project from '@assets/blog/ai-shorts/project.png';
+import thumbnail from '@assets/blog/ai-shorts/thumbnail.png';
 
 
 <Paragraph title="Can Youtube Content be AI generated?" subtitle="This wasn't going to be easy.">
@@ -18,9 +21,26 @@ His goal was to start a fully automatic youtube channel, have it go viral, and e
 
 When he went up to me with this idea, I already knew he wasn't the first to think about this. In these last couple of years, with the rising of AI,
 I've seen tons and tons of attempts at AI generated content, and had already thought of giving it a go myself. I decided to take this as an opportunity
-to actually dip my hands into this type of projects, so we hopped on a call and started brainstorming an approach to the problem.
+to actually dip my hands into this type of projects, so we hopped on a call and started brainstorming an approach to the problem. In the end, we settled
+for a generator that would fetch a specific pair of Post & Reply from the popular sub r/AskReddit, and generate a youtube short ready for upload.
 </Paragraph>
 <Paragraph title="How do you go from a Reddit Post to a Youtube Short?">
 <Image src={project} alt="Our first logic map of the generator." class="shadow-md border-2 border-ebony-clay-950"/>
-Our first obstacle was: how do you start, from a link to a Reddit Post, and end up with a complete youtube video ready for upload?
+Converting from a text document to a well-edited & subtitled video is no easy task. Let's think about this problem, and break it up in single stepts that
+a computer would need to do to accomplish this goal. First of all, we need to access reddit. Given a link to some content, using the Reddit API, we were able to
+access a set of meta information about the post, such as the author, the title, the description, and even the replies. You can think about our "post" object
+as something like the following:
+
+```
+test aaaaaaaaaaaaaaa aaaaaaa
+```
+
+After our post object was found and retrieved, we created a thumbnail for the post. This part was handled by my friend that worked on the project with me,
+and basically created an image off of this POST element. Our goal was to display the thumbnail as the first part of the video, as if it was a screenshot
+taken off reddit and edited in the short.
+
+<Image src={thumbnail} alt="Our first logic map of the generator." class="shadow-md border-2 border-ebony-clay-950"/>
+
+We felt that the number of upvotes & comments wasn't a really necessary detail, so we randomly generated those numbers.
+
 </Paragraph>
