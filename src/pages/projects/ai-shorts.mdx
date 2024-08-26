@@ -44,3 +44,21 @@ taken off reddit and edited in the short.
 We felt that the number of upvotes & comments wasn't a really necessary detail, so we randomly generated those numbers.
 
 </Paragraph>
+
+<Paragraph title="How Did We Generate the Voice?">
+As we moved forward, the next challenge was to generate a voiceover for our video that would resonate with viewers. We aimed to mimic that distinctive TikTok female voice, which had become synonymous with viral content. Unfortunately, after scouring various TTS (Text-to-Speech) services, we realized that none offered an affordable or even remotely accurate replication of that voice. Just when we were about to give up, I stumbled upon a website that used the exact voice we were looking for. This site exposed an API that allowed users to generate voice samples. While I'm not sure if the developer was aware of the API's potential, I decided to leverage it for our project.
+
+There was a catch, though: the API had limitations on the length of the text it could process in one go. To work around this, I implemented a function that intelligently split the text into smaller chunks. Each chunk was carefully crafted to stay within the maximum allowed length, ensuring that the voice generation would not be cut off abruptly. These chunks were then processed individually, and the resulting audio files were stored in a specific folder structure: 
+
+`./generated/<reddit_post_id>-<unix_date>/`
+
+Within this folder, we stored both the thumbnail and the audio files. The audio files were named sequentially, like `sample1.wav`, `sample2.wav`, and so on, to keep everything organized and easily accessible. With this setup, we could efficiently manage and retrieve the assets needed for each video.
+
+</Paragraph>
+
+<Paragraph title="Synchronizing Subtitles with the Voice">
+Once we had our audio files, the next step was to generate accurate subtitles. To achieve this, we merged all the audio samples into a single file, which allowed us to have one continuous voiceover. The key to creating engaging subtitles is precise timing, so we turned to OpenAI's Whisper model for this task. Whisper has a word-by-word mode that generates timing data for each spoken word, which was exactly what we needed.
+
+We fed the combined audio file into Whisper, and it produced a detailed transcription along with timestamps for each word. This data was critical for the next phase of our project: creating animated subtitles. By having exact timings, we could ensure that each word appeared on screen at the perfect moment, enhancing the overall viewer experience and making the video more dynamic.
+
+</Paragraph>
