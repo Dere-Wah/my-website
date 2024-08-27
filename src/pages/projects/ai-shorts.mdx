@@ -23,7 +23,8 @@ import tg_approval from "@assets/blog/ai-shorts/tg_approval.png"
 import tg_interface from "@assets/blog/ai-shorts/tg_interface.png"
 import tg_menu from "@assets/blog/ai-shorts/tg_menu.png"
 import tg_uploads from "@assets/blog/ai-shorts/tg_uploads.png"
-
+import result from "@assets/blog/ai-shorts/result.png"
+import file_system from "@assets/blog/ai-shorts/file_system.png"
 
 
 <Paragraph title="Can Youtube Content be AI generated?" subtitle="This wasn't going to be easy.">
@@ -67,7 +68,7 @@ After our post object was found and retrieved, we created a thumbnail for the po
 and basically created an image off of this POST element. Our goal was to display the thumbnail as the first part of the video, as if it was a screenshot
 taken off reddit and edited in the short.
 
-<Image src={thumbnail} alt="Our first logic map of the generator." class="shadow-md border-2 border-ebony-clay-950"/>
+<Image src={thumbnail} alt="An example thumbnail." class="shadow-md border-2 border-ebony-clay-950"/>
 
 We felt that the number of upvotes & comments wasn't a really necessary detail, so we randomly generated those numbers.
 
@@ -96,6 +97,8 @@ These chunks were then processed individually, and the resulting audio files wer
 Within this folder, we stored both the thumbnail and the audio files.
 The audio files were named sequentially, like sample1.wav, sample2.wav, and so on, to keep everything organized and easily accessible
  With this setup, we could efficiently manage and retrieve the assets needed for each video.
+
+<Image src={file_system} alt="File system." class="shadow-md border-2 border-ebony-clay-950"/>
 
 </Paragraph>
 
@@ -206,6 +209,10 @@ def convert_to_ass(words, folder):
     subs.close
     return
 ```
+
+The resulting file is something like this:
+<Image src={result} alt="Our subtitles.ass file." class="shadow-md border-2 border-ebony-clay-950"/>
+
 
 </Paragraph>
 <Paragraph title="Putting It All Together">
