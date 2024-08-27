@@ -59,7 +59,7 @@ export default function AgeDisplay(){
     }
 
     return(
-        <button onClick={handleClick} className="inline-flex items-center border border-ebony-clay-100/20 bg-ebony-clay-950/50 rounded-md px-1 h-6 font-semibold hover:underline hover:cursor-pointer">
+        <button onClick={handleClick} className="inline-flex w-fit items-center border border-ebony-clay-100/20 bg-ebony-clay-950/50 rounded-md px-1 h-6 font-semibold hover:underline hover:cursor-pointer">
             {display_icon != null && <img src={display_icon} className="h-2/3 pe-1"></img>}
             <span>{display_number.toString() + display_unit}</span>
         </button>

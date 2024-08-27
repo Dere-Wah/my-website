@@ -7,7 +7,7 @@ projects = projects.sort((a, b) => new Date(b.frontmatter.date).getTime() - new 
 projects = projects.filter(project => project.frontmatter.published);
 ---
 
-<div class="flex w-full flex-col items-start px-4">
+<div class="flex w-full flex-col items-start">
     {projects.map((project) => (
         <Card title={project.frontmatter.title} description={project.frontmatter.description} tags={project.frontmatter.tags} href={project.url} date={project.frontmatter.date}/>
     ))}

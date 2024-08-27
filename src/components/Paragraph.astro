@@ -1,17 +1,14 @@
 ---
-import { boolean } from "astro/zod";
-import Divider from "../components/Divider.astro"
 interface Props {
-    title: string;
     subtitle?: string
 }
 
-const { title, subtitle} = Astro.props;
+const { subtitle} = Astro.props;
 ---
 
 
-<div class="flex flex-col items-start w-full px-4 my-4">
-    <div class="font-bold text-3xl text-ebony-clay-300 pb-3">{title}</div>
-    <div class="flex flex-col gap-4 text-ebony-clay-100 text-base/loose w-full"><slot /></div>
-    <span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
+
+<div class="text-ebony-clay-100 text-base/loose w-full">
+    <slot />
 </div>
+<span class="text-ebony-clay-100 italic font-normal text-sm opacity-50">{subtitle}</span>
