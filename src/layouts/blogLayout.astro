@@ -29,7 +29,7 @@ const { frontmatter } = Astro.props;
 						</div>
 					</div>
 					<Divider />
-					<div class="flex flex-col">
+					<div class="flex flex-col w-[100vw] max-w-[70ch]">
 						<slot />
 					</div>
 					<Divider />
@@ -38,6 +38,7 @@ const { frontmatter } = Astro.props;
 							<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">{tag}</div>
 						))}
 					</div>
+					<HomeButton />
 					<Links />
 				</div>
 			</main>
