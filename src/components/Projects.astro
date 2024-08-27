@@ -1,9 +1,10 @@
 ---
 import Card from "@components/Card.astro";
-const projects = await Astro.glob("../pages/projects/*.mdx");
+var projects = await Astro.glob("../pages/projects/*.mdx");
 
 // Sort projects by date in descending order (newest first)
-projects.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+projects = projects.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+projects = projects.filter(project => project.frontmatter.published);
 ---
 
 <div class="flex w-full flex-col items-start px-4">

@@ -1,15 +1,18 @@
 ---
 title: "Making a Spotify Bot that follows everyone."
 layout: "@layouts/blogLayout.astro"
-date: "25/08/2024"
+date: "2024-08-30"
 description: "There's a chance you're followed by one of these accounts on Spotify."
 tags: ["Spotify", "Bots"]
+published: false
 ---
+import CodeBlock from '@components/CodeBlock.astro';
+import Code from "@components/Code.astro";
+import Shield from '@components/Shield.astro';
 import Divider from "@components/Divider.astro"
-import Paragraph from "@components/Paragraph.astro"
-import Shield from "@components/Shield.astro"
-import Links from "@components/Links.astro"
+export const components = {pre: CodeBlock, code: Code, strong: Shield, hr: Divider}
 
-<Paragraph title="Can you follow every single existing account on Spotify?">
-idk
-</Paragraph>
+import Paragraph from "@components/Paragraph.astro"
+import { Image } from 'astro:assets';
+
+

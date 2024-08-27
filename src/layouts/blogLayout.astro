@@ -24,12 +24,11 @@ const { frontmatter } = Astro.props;
 					<HomeButton />
 					<Paragraph title={frontmatter.title} subtitle={frontmatter.description}/>
 					<div class="flex justify-end">
-						<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 mx-8 group-hover:text-ebony-clay-400 scale-110">
+						<div class="text-ebony-clay-100/80 bg-ebony-clay-900/30 rounded-lg border border-ebony-clay-400/10 mx-4 px-0.5">
 							{frontmatter.date}
 						</div>
 					</div>
-					<Divider />
-					<div class="flex flex-col w-[100vw] max-w-[70ch]">
+					<div class="flex flex-col w-[100vw] max-w-[70ch] mt-2">
 						<slot />
 					</div>
 					<Divider />

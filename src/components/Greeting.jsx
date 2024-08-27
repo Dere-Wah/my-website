@@ -7,7 +7,7 @@ export default function Greeting(){
     greet = greetings[Math.floor(Math.random()*(greetings.length))]
 
     return(
-        <div className="pl-5 text-4xl font-extrabold pb-8 text-ebony-clay-200 animate-fall transition-all duration-300 tracking-[-0.075em] ">
+        <div className="pl-5 text-4xl font-extrabold pb-8 text-ebony-clay-200 animate-fall transition-all duration-300 tracking-[-0.075em]">
             {greet}
         </div>
     )

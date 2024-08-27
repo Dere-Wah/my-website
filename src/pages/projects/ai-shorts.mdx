@@ -1,32 +1,33 @@
 ---
 title: "Making an AI youtube shorts generator."
 layout: "@layouts/blogLayout.astro"
-date: "25/08/2024"
+date: "2024-08-27"
 description: "An automated youtube channel completely handled by AI."
 tags: ["AI", "Youtube"]
+published: true
 ---
 import CodeBlock from '@components/CodeBlock.astro';
 import Code from "@components/Code.astro";
-export const components = {pre: CodeBlock, code: Code}
-
-
+import Shield from '@components/Shield.astro';
 import Divider from "@components/Divider.astro"
+import BlogImage from "@components/BlogImage.astro";
+export const components = {pre: CodeBlock, code: Code, strong: Shield, hr: Divider, img: BlogImage}
+
 import Paragraph from "@components/Paragraph.astro"
 import { Image } from 'astro:assets';
-
-
 
 import project from '@assets/blog/ai-shorts/project.png';
 import thumbnail from '@assets/blog/ai-shorts/thumbnail.png';
 import ass from "@assets/blog/ai-shorts/ass.png";
-import tg_approval from "@assets/blog/ai-shorts/tg_approval.png"
-import tg_interface from "@assets/blog/ai-shorts/tg_interface.png"
-import tg_menu from "@assets/blog/ai-shorts/tg_menu.png"
-import tg_uploads from "@assets/blog/ai-shorts/tg_uploads.png"
-import result from "@assets/blog/ai-shorts/result.png"
-import file_system from "@assets/blog/ai-shorts/file_system.png"
+import tg_approval from "@assets/blog/ai-shorts/tg_approval.png";
+import tg_interface from "@assets/blog/ai-shorts/tg_interface.png";
+import tg_menu from "@assets/blog/ai-shorts/tg_menu.png";
+import tg_uploads from "@assets/blog/ai-shorts/tg_uploads.png";
+import result from "@assets/blog/ai-shorts/result.png";
+import file_system from "@assets/blog/ai-shorts/file_system.png";
 
-
+![An example of an uploaded video](@assets/blog/ai-shorts/yt_banner.jpg)
+---
 <Paragraph title="Can Youtube Content be AI generated?" subtitle="This wasn't going to be easy.">
 A few months ago, a friend messaged me about an idea he recently had: making a Youtube-Video-Shorts-Generator-3000 using AI, that would,
 given a few information such as a video title and a body, generate a completely modern-style short video, and automatically upload it to youtube.
@@ -39,8 +40,9 @@ I decided to take this as an opportunity
 to actually dip my hands into this type of projects, so we hopped on a call and started brainstorming an approach to the problem. In the end, we settled
 for a generator that would fetch a specific pair of Post & Reply from the popular sub r/AskReddit, and generate a youtube short ready for upload.
 </Paragraph>
+---
 <Paragraph title="How do you go from a Reddit Post to a Youtube Short?">
-<Image src={project} alt="Our first logic map of the generator." class="shadow-md border-2 border-ebony-clay-950"/>
+![Our first logic map of the generator.](@assets/blog/ai-shorts/project.png)
 Converting from a text document to a well-edited & subtitled video is no easy task. Let's think about this problem, and break it up in single stepts that
 a computer would need to do to accomplish this goal. First of all, we need to access reddit.
 
@@ -68,12 +70,12 @@ After our post object was found and retrieved, we created a thumbnail for the po
 and basically created an image off of this POST element. Our goal was to display the thumbnail as the first part of the video, as if it was a screenshot
 taken off reddit and edited in the short.
 
-<Image src={thumbnail} alt="An example thumbnail." class="shadow-md border-2 border-ebony-clay-950"/>
+![An example thumbnail.](@assets/blog/ai-shorts/thumbnail.png)
 
 We felt that the number of upvotes & comments wasn't a really necessary detail, so we randomly generated those numbers.
 
 </Paragraph>
-
+---
 <Paragraph title="How Did We Generate the Voice?">
 As we moved forward, the next challenge was to generate a voiceover
 for our video that would resonate with viewers. We aimed to mimic that
@@ -98,10 +100,10 @@ Within this folder, we stored both the thumbnail and the audio files.
 The audio files were named sequentially, like sample1.wav, sample2.wav, and so on, to keep everything organized and easily accessible
  With this setup, we could efficiently manage and retrieve the assets needed for each video.
 
-<Image src={file_system} alt="File system." class="shadow-md border-2 border-ebony-clay-950"/>
+![File system.](@assets/blog/ai-shorts/file_system.png)
 
 </Paragraph>
-
+---
 <Paragraph title="Synchronizing Subtitles with the Voice">
 Once we had our audio files, the next step was to generate accurate subtitles.
 To achieve this, we merged all the audio samples into a single file, which allowed us to have one continuous voiceover.
@@ -116,7 +118,7 @@ By having exact timings, we could ensure that each word appeared on screen at th
 enhancing the overall viewer experience and making the video more dynamic.
 
 </Paragraph>
-
+---
 <Paragraph title="Ensuring Audio Length and Segmenting for Whisper">
 Thanks to the calculations we performed earlier, we were confident that the audio length stayed within the API's limits.
 
@@ -153,6 +155,7 @@ However, the challenge was that each timing was relative to the start of each in
 
 As shown above, each word group has a start and end value. With multiple audio segments, we needed to create a function that would offset each word group to its correct position within the entire audio duration, accounting for the segments that preceded it.
 </Paragraph>
+---
 <Paragraph title="Generating Subtitles with Procedural Animations">
 Now that we had a detailed JSON of all this information, the next step was to generate subtitles. Instead of adding standard subtitles, we wanted to incorporate procedural animations.
 
@@ -211,10 +214,11 @@ def convert_to_ass(words, folder):
 ```
 
 The resulting file is something like this:
-<Image src={result} alt="Our subtitles.ass file." class="shadow-md border-2 border-ebony-clay-950"/>
+![Our subtitles.ass file.](@assets/blog/ai-shorts/result.png)
 
 
 </Paragraph>
+---
 <Paragraph title="Putting It All Together">
 With the audio and subtitle file prepared, we used a specific function within FFMPEG to merge them, resulting in a video with synchronized audio and animated subtitles.
 
@@ -224,31 +228,33 @@ It's worth mentioning that our transcription file also generates audio for the t
 
 Finally, we added some generic background music, and that was it! We successfully built a generator that starts with a Reddit post, generates corresponding audio, transcribes the audio with precise timings, creates animated subtitles using ASS, and merges everything with a random background video and audio using FFMPEG.
 </Paragraph>
-
+---
 <Paragraph title="Expanding the Project: Moving to Telegram">
 After we finished the initial bot, I realized I wasn't quite satisfied and wanted to take it a step further by moving the entire interface to a Telegram bot.
 
-<Image src={tg_interface} alt="The BOT interface, using Telegram Threads" class="shadow-md border-2 border-ebony-clay-950"/>
+![The BOT interface, using Telegram Threads](@assets/blog/ai-shorts/tg_interface.png)
 
 I developed a bot that monitored any links sent in a specific chat. For each link, the bot would prompt the user to choose the type of video they wanted to generate: Comment, Post, or Post with Top Comments. Here’s how each option worked:
 - **Comment**: If the link pointed to a comment, the bot would generate the post title along with the subtitled comment, as described earlier.
 - **Post**: This option generated the post's title, created a thumbnail, and subtitled the post's selftext. This was particularly useful for posts where the author narrated a story or where the post itself was the focal point.
 - **Post & Top Comments**: The bot would generate the title and thumbnail, then loop through the top comments. It would ask ChatGPT to rate each comment in terms of length, interest, and relevance, selecting the best three or four. The bot would then concatenate different voices, each with distinct subtitle colors, to read these texts sequentially.
 
-<Image src={tg_menu} alt="Generation Options" class="shadow-md border-2 border-ebony-clay-950"/>
+![Generation Options](@assets/blog/ai-shorts/tg_menu.png)
 
 Interestingly, the "Post" feature became our most used. We found it to be the most effective, as the "Post & Top Comments" option sometimes produced videos that were too long for YouTube Shorts. Additionally, it could be difficult to distinguish when one comment ended and another began, making the video less engaging.
 </Paragraph>
+---
 <Paragraph title="Automation and Review Process">
 Once a post was selected, the bot ran the entire process from start to finish, then sent the video back to us on Telegram in a designated pending-videos channel. This allowed us to review the generated videos and manually decide if they were good enough for upload. We could approve or reject each video. If a video was rejected, it would be deleted. Approved videos were sent to a queue folder, which would then be processed for automatic YouTube upload.
 
-<Image src={tg_approval} alt="Approving a rendered video." class="shadow-md border-2 border-ebony-clay-950"/>
+![Approving a rendered video.](@assets/blog/ai-shorts/tg_approval.png)
 
 I’ll dive into the details of automatic YouTube uploads via Selenium in another post, but suffice to say, it was one of the hardest parts of the project. I wasn’t expecting it to be so challenging, and I had to resort to using a domestic IP address and multiple Selenium attempts to successfully access a YouTube channel and upload a video with specific metadata.
 
 Finally, we set up an "uploaded-videos" channel to notify us of every single upload on the YouTube channel, along with how many videos were left in the queue.
-<Image src={tg_uploads} alt="Uploads Notification" class="shadow-md border-2 border-ebony-clay-950"/>
+![Uploads Notification](@assets/blog/ai-shorts/tg_uploads.png)
 </Paragraph>
+---
 <Paragraph title="The Hardcode Feature and Exploring New Possibilities">
 Not one to stop there, I added a feature that allowed us to "Hard Code" posts. This enabled us to generate videos not based on a Reddit link, but on a custom set of author, subreddit, title, and selftext combinations. For example, a command could look like this:
 
@@ -264,6 +270,7 @@ I even explored the idea of using this feature for advertising. I could craft st
 /hardcode formula1|Redditors, what is the best gift for a F1 Fan?|Recently, I found a really underrated brand called FLF Design. As you probably know, Formula 1 doesn't have any minimalistic clothing line, but only jackets filled with sponsors and names. As a minimalistic lover, the FLF Designs are fire. They basically turn the sport we all love and the racing cars into neat art for your clothes, which is something I rarely see around. If someone I know is reading this, please gift me this brand!
 ```
 </Paragraph>
+---
 <Paragraph title="Autogenerate: Full Automation">
 The last twist I added to the Telegram bot was an /autogenerate command, which fully automated the video creation process. I could generate posts and captions using ChatGPT and then paste them into my /hardcode command, but I wanted to eliminate even those steps. The /autogenerate command took care of everything:
 
@@ -302,7 +309,7 @@ Sometimes, the most hurtful words can be the biggest motivation to succeed.
 While these auto-generated stories were not always the most original or interesting, and thus the feature wasn’t used extensively, it still added a layer of automation that could be handy in specific scenarios.
 
 </Paragraph>
-
+---
 <Paragraph title="Conclusions and going forward">
 After we finished developing the bot, we put it online on a server and used it consistently for a couple of months. The bot was uploading content on a 6-hour basis, and we were constantly generating new videos for it. You can find the videos in the Shorts section of this YouTube channel: [**@DereDev**](https://www.youtube.com/@deredev4179/shorts).
 Some videos even went "a little bit" viral, reaching up to 7,200 views, like [**this one**](https://www.youtube.com/shorts/eaL8Rur6Spg).
