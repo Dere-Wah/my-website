@@ -1,5 +1,5 @@
 ---
-title: "Can you simulate Twitter Cancel Culture in a videogame?."
+title: "Simulating Twitter Cancel Culture in a videogame."
 layout: "@layouts/blogLayout.astro"
 date: "2024-10-24"
 description: "A devlog about the first game jam I ever took place in (Brackeys Game Jam 2024.2)."
@@ -26,13 +26,15 @@ A few months ago, I decided to participate in my first game jam. It was the end 
 
 At first, I wasn’t sure whether to join. The theme hadn’t been announced, and I had no idea what kind of game I wanted to make or even what engine to use. It was one of those last-minute decisions where I thought, *Why not?* 
 
-One thing worth noting is that I had just finished developing my first-ever web-based game, called **Spyfall**. It was a social deduction game with a React front-end and a backend server for networking. Having just taught myself React, I was still fresh with excitement from that project (you can read more about it in another blog post <Shield icon="mdi:alpha-d-circle-outline" url="./spyfall ">HERE</ Shield>).
+One thing worth noting is that I had just finished developing my first-ever web-based game, called <Shield icon="twemoji:detective" url="https://spyfall.derewah.dev">SpyFall</ Shield>. It was a social deduction game with a React front-end and a backend server for networking. Having just taught myself React, I was still fresh with excitement from that project (you can read more about it in another blog post <Shield icon="mdi:alpha-d-circle-outline" url="./spyfall ">HERE</ Shield>).
 
 ## Getting Started: The Theme and Initial Hesitation
 
 After joining the game jam’s Discord community, I engaged with the other participants, and when the jam officially kicked off, the theme was finally revealed: **Calm Before the Storm**.
 
 As a first-time participant, one big takeaway I’d like to share is this: **joining the community is a huge advantage**. Engaging with others, sharing progress, and getting swept up in the general excitement made a massive difference for me. If I had just worked on my own, I probably would’ve given up after an hour, thinking my game was terrible. But thanks to the feedback and motivation from the community, I stuck with it. In the end, my game ranked **#6 in Innovation** out of 1,500 entries!
+
+---
 
 ## The Game Idea: Inspired by Cancel Culture
 
@@ -41,6 +43,8 @@ The idea for my game wasn’t entirely my own. I’ve always been fascinated by 
 ![The message mentioned above.](@assets/blog/twister/discord.png)
 
 This immediately sparked an idea for a game. I started thinking about how I could implement it: using AI to evaluate tweets, determining how “angry” your followers are, and figuring out the game loop. The concept wasn’t a traditional, linear game, which meant I had to get creative with how I gamified the experience.
+
+---
 
 ## Prototyping and Building the Foundation
 
@@ -62,6 +66,8 @@ I also created a login screen that led into the game, though it didn’t really 
 
 My final vision for the game included features like replying to comments, having persistent conversations with AI-generated repliers, DMs, and even “drama events” where you’d battle against specific users to affect your reputation. Unfortunately, with only one week to work on it, I had to scrap a lot of those ideas.
 
+---
+
 ## Rating Tweets: The Challenges of Using AI
 
 To rate the tweets, I wanted to use OpenAI’s API to determine whether the content was controversial. But I ran into a few challenges:
@@ -80,6 +86,8 @@ I used this endpoint to create a “low-res flagging” system, where less contr
 
 ![The (primitive) los res flagging functions.](@assets/blog/twister/scores.png)
 
+---
+
 ## Adding Interactivity: Comments, Apologies, and Gameplay Loop
 
 To make the game more interactive, I added **AI-generated comments**. Depending on the controversy level, different types of commenters would appear—“Edgy,” “Enraged,” “Trolling,” or “Offended.” They would react to your posts with relevant comments.
@@ -95,6 +103,8 @@ Next, I implemented a “followers” counter to give the game a clear goal. The
 <video controls class="w-full flex flex-row justify-center aspect-video">
   <source src="../src/assets/blog/twister/progress.mp4" type="video/mp4" />
 </ video>
+
+---
 
 ## The Final Stretch: Features and Fun Additions
 
@@ -115,6 +125,8 @@ To make the game less frustrating, I included a “heart” and “warning” co
 <video controls class="w-full flex flex-row justify-center aspect-video">
   <source src="../src/assets/blog/twister/full.mp4" type="video/mp4" />
 </ video>
+
+---
 
 ## The Results: #6 in Innovation!
 
