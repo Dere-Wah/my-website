@@ -27,6 +27,13 @@ import UnorderedList from '@components/UnorderedList.astro';
 
 In this post, I’ll guide you through my journey of setting up a neural network (NN) capable of simulating **Mario Kart** gameplay, frame by frame, based on the previous frame and a steering input (left or right). This was achieved **without embedding traditional game logic into the code**. Let's dive into the inspiration, technical challenges, and final implementation of this ambitious project.
 
+<div class="text-ebony-clay-50 flex flex-row gap-1">
+<Shield icon="twemoji:hugging-face" url="https://huggingface.co/DereWah/diamond-mariokart64" >Model</Shield>
+<Shield icon="twemoji:hugging-face" url="https://huggingface.co/datasets/DereWah/mk64-steering" >Dataset</Shield>
+<Shield icon="mdi:github" url="https://github.com/Dere-Wah/AI-MarioKart64">Codebase</Shield>
+<Shield icon="mdi:discord" url="https://discord.gg/uMF94QreGc">Discord</Shield>
+</div>
+
 ![The resulting simulated game.](public/assets/blog/ai-mariokart/aimk64.gif)
 
 ---
@@ -47,6 +54,8 @@ I came across **DIAMOND**, a model trained on games like **ATARI** and **CSGO**,
 2. **Generalize the workflow** for training similar models on other games.
 
 This blog post will walk you through my process of training the model, the challenges I faced, and the technical lessons learned. A future YouTube video will document this approach applied to another game, so stay tuned!
+
+![The original model trained on CSGO.](public/assets/blog/ai-mariokart/csgo.gif)
 
 ---
 
@@ -439,11 +448,6 @@ Upon training completion (or interruption), DIAMOND saves results in the `output
 - `checkpoints/state.pt`: Contains all training parameters (4GB, not needed for inference).
 - `agent_versions/<checkpoint>.pt`: Smaller checkpoint file (~1.42GB) used for inference.
 
-With the trained model ready, the next task is deploying it for gameplay. DIAMOND uses the trained model to predict steering vectors based on real-time emulator frames.
-
----
-
-# Your Model Is Trained! Time to Play It
 
 Now that your model is trained, the next step is to make it play the game. This requires some reverse engineering to integrate the Neural Network (NN) into the Mario Kart 64 emulator. Let’s proceed step by step.
 
