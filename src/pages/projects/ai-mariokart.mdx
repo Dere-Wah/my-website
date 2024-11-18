@@ -524,7 +524,8 @@ To generate spawns for Mario Kart 64, we randomly select frames and actions from
    ```
 
 3. **Stack and Save the Tensors:**
-   After extracting all data, stack the tensors for full-res, low-res frames, and actions. Rearrange the dimensions of the images to match the required format: `(FRAME_NUMBER, COLOR_CHANNELS, HEIGHT, WIDTH)`.
+   After extracting all data, stack the tensors for full-res, low-res frames, and actions. Rearrange the dimensions of the images to match the required format:
+   `(FRAME_N, COLOR_CHANNEL, H, W)`.
 
    Code example:
    ```python
