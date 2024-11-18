@@ -3,8 +3,8 @@ title: "How I Trained a Neural Network to Simulate Mario Kart Gameplay"
 layout: "@layouts/blogLayout.astro"
 date: "2024-11-18"
 description: "And how you can train basically anything with this workflow!"
-tags: ["AI", "Diffusion"]
-published: false
+tags: ["AI", "Workflow"]
+published: true
 ---
 import CodeBlock from '@components/CodeBlock.astro';
 import Code from "@components/Code.astro";
@@ -26,6 +26,8 @@ import UnorderedList from '@components/UnorderedList.astro';
 ## Introduction
 
 In this post, I’ll guide you through my journey of setting up a neural network (NN) capable of simulating **Mario Kart** gameplay, frame by frame, based on the previous frame and a steering input (left or right). This was achieved **without embedding traditional game logic into the code**. Let's dive into the inspiration, technical challenges, and final implementation of this ambitious project.
+
+![The resulting simulated game.](public/assets/blog/ai-mariokart/aimk64.gif)
 
 ---
 
@@ -104,6 +106,8 @@ Since no pre-existing SM64 dataset was available, I built a simple program to re
 - **Insufficient Data**: Initial tests with just a few minutes of gameplay led to poor results.  
    *(Check out the preliminary output: [**`YouTube link`**](https://youtu.be/2GYaArkV3Ig)).*
 
+![The first version of AISM64.](public/assets/blog/ai-mariokart/sm64ai.gif)
+
 This made it clear that training a robust NN for SM64 required either a team effort or a much larger dataset.
 
 ---
@@ -174,6 +178,8 @@ For example:
 - A steering value of `0.0` maps to: `[0, ..., 1, ..., 0]` (center position).
 - A steering value of `1.0` maps to: `[0, ..., 0, 1]`.
 
+![The dataset collection script (this is from when it was collecting SM64, so just 11 inputs instead of 20)](public/assets/blog/ai-mariokart/vectors_dataset.png)
+
 ---
 
 ## Capturing and Storing Gameplay Data
@@ -216,6 +222,8 @@ def capture_frame(prediction, img):
 - **HDF5 File Management**: Automatically creates new files after 1000 frames to keep datasets manageable.
 - **Image Processing**: Converts gameplay frames to the required format (removing the alpha channel and resizing).
 - **Data Storage**: Saves both image data (`X`) and steering input vectors (`Y`) for each frame.
+
+![How a dataset looks like from the outside](public/assets/blog/ai-mariokart/dataset_hdf5.png)
 
 ---
 
@@ -266,6 +274,8 @@ DIAMOND’s training framework requires data preprocessing to convert the raw HD
 
 3. **Output Directory**:
    - Update paths to save processed datasets in the correct locations.
+
+![Processing the tar files](public/assets/blog/ai-mariokart/processing_tar_files.png)
 
 ---
 
@@ -334,6 +344,8 @@ The PyTorch website ([**`pytorch.org`**](https://pytorch.org/)) provides an inte
 # **Optimizing Training Parameters**
 
 Training DIAMOND for Mario Kart 64 required careful optimization of batch sizes and gradient accumulation steps to avoid GPU memory overload while maximizing efficiency. Below is a detailed explanation of the chosen parameters and reasoning based on your setup and experimentation:
+
+![Adjusting to fill the GPU on colab](public/assets/blog/ai-mariokart/filling_gpu.png)
 
 ---
 
@@ -420,14 +432,12 @@ To start training, I ran the modified `main.py` with the optimized parameters. M
 
 ## **Training Outputs**
 
+![Outputs](public/assets/blog/ai-mariokart/checkpoints.png)
+
 Upon training completion (or interruption), DIAMOND saves results in the `outputs` directory. Key files include:
 
 - `checkpoints/state.pt`: Contains all training parameters (4GB, not needed for inference).
 - `agent_versions/<checkpoint>.pt`: Smaller checkpoint file (~1.42GB) used for inference.
-
----
-
-## **Next Steps**
 
 With the trained model ready, the next task is deploying it for gameplay. DIAMOND uses the trained model to predict steering vectors based on real-time emulator frames.
 
@@ -446,6 +456,9 @@ The NN needs "spawns" to initialize the simulation. Spawns are essentially preco
 ---
 
 ## **Structure of Spawns**
+
+![Adjusting to fill the GPU on colab](public/assets/blog/ai-mariokart/spawn.png)
+
 In the **CSGO DIAMOND model** uploaded to HuggingFace ([**`here`**](https://huggingface.co/eloialonso/diamond/tree/main/csgo)), you can find a `spawn` folder. Inside it, there are numbered folders with `.npy` files and an `info.json` file. The `.npy` files contain the data needed for initialization:
 
 - **low_res**: Tensor for low-resolution frames, shape `(4, 3, 48, 64)`
