@@ -34,7 +34,18 @@ In this post, I’ll guide you through my journey of setting up a neural network
 <Shield icon="mdi:discord" url="https://discord.gg/uMF94QreGc">Discord</Shield>
 </div>
 
-![The resulting simulated game.](public/assets/blog/ai-mariokart/aimk64.gif)
+
+<div class="flex flex-wrap justify-center gap-1" >
+    <video autoplay loop class="w-2/5 justify-center aspect-square">
+      <source src="../assets/blog/ai-mariokart/escaping.mp4" type="video/mp4" />
+    </ video>
+    <video autoplay loop class="w-2/5 justify-center aspect-square">
+      <source src="../assets/blog/ai-mariokart/turn.mp4" type="video/mp4" />
+    </ video>
+    <video autoplay loop class="w-2/5 justify-center aspect-square">
+      <source src="../assets/blog/ai-mariokart/tunnel.mp4" type="video/mp4" />
+    </ video>
+</div>
 
 ---
 
@@ -259,6 +270,18 @@ While collecting data, I noticed some inherent limitations in the dataset:
 - **Wall Collisions**: Crashes into walls were rare in the dataset. When the NN encountered such a scenario, it struggled to simulate an impact and instead attempted to continue generating the track ahead.
 
 These limitations highlight the importance of carefully curating datasets to cover edge cases.
+
+<div class="flex flex-wrap justify-center gap-1" >
+    <video autoplay loop class="w-2/5 justify-center aspect-square">
+      <source src="../assets/blog/ai-mariokart/flicker.mp4" type="video/mp4" />
+    </ video>
+    <video autoplay loop class="w-2/5 justify-center aspect-square">
+      <source src="../assets/blog/ai-mariokart/wallhit.mp4" type="video/mp4" />
+    </ video>
+</div>
+
+In the clip above you can see some interesting details captured by the model. For instance, in clip #1 when the kart passes the finish line, you can see the time trial counter actually flicker.
+Or in clip #2 it understood how going against a wall worked especially when entering the tunnel (in the dataset sometimes this happened!)
 
 ---
 
@@ -541,6 +564,8 @@ To generate spawns for Mario Kart 64, we randomly select frames and actions from
 
 4. **Save the Spawns:**
    The `spawn.py` script also saves images of the full-resolution frames so you can preview the spawns. This is helpful for selecting interesting starting points. Spawns are saved in the `./training/csgo/spawn` folder, which you need to create manually.
+
+
 
 ---
 
