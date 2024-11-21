@@ -4,6 +4,7 @@ import Divider from "@components/Divider.astro";
 import Links from "@components/Links.astro";
 import Header1 from "@components/Header1.astro";
 import Paragraph from "@components/Paragraph.astro";
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 const { frontmatter } = Astro.props;
 ---
 
@@ -23,6 +24,7 @@ const { frontmatter } = Astro.props;
 		<div class="px-4 py-14">
 			<div class="flex flex-col items-center">
 				<main class="flex flex-col w-full items-center max-w-[65ch] gap-1">
+					<SpeedInsights/>
 					<Header1>{frontmatter.title}</Header1>
 					<div class="flex flex-col justify-start w-full">
 						<Paragraph subtitle={frontmatter.description}></Paragraph>
