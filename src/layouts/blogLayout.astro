@@ -4,50 +4,54 @@ import Divider from "@components/Divider.astro";
 import Links from "@components/Links.astro";
 import Header1 from "@components/Header1.astro";
 import Paragraph from "@components/Paragraph.astro";
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from "@vercel/speed-insights/astro";
 const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={frontmatter.description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{frontmatter.title}</title>
-		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5087623072838306"
-     crossorigin="anonymous"></script>
-	</head>
-	<body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-900">
-		<div class="px-4 py-14">
-			<div class="flex flex-col items-center">
-				<main class="flex flex-col w-full items-center max-w-[65ch] gap-1">
-					<SpeedInsights/>
-					<Header1>{frontmatter.title}</Header1>
-					<div class="flex flex-col justify-start w-full">
-						<Paragraph subtitle={frontmatter.description}></Paragraph>
-					</div>
-					<div class="flex w-full justify-end">
-						<div class="text-ebony-clay-100/80 bg-ebony-clay-900/30 rounded-lg border border-ebony-clay-400/10 mx-4 px-0.5">
-							{frontmatter.date}
-						</div>
-					</div>
-					<div class="flex flex-col w-full gap-4">
-						<slot/>
-					</div>
-					<div class="flex flex-row w-full justify-start gap-3 flex-wrap py-3 mx-4">
-						{frontmatter.tags.map((tag: string) => (
-							<div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">{tag}</div>
-						))}
-					</div>
-					<Divider />
-					<HomeButton />
-					<Header1>Contact Me</Header1>
-					<Links />
-				</main>
-			</div>
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={frontmatter.description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-900">
+    <div class="px-4 py-14">
+      <div class="flex flex-col items-center">
+        <main class="flex flex-col w-full items-center max-w-[65ch] gap-1">
+          <Header1>{frontmatter.title}</Header1>
+          <div class="flex flex-col justify-start w-full">
+            <Paragraph subtitle={frontmatter.description} />
+          </div>
+          <div class="flex w-full justify-end">
+            <div
+              class="text-ebony-clay-100/80 bg-ebony-clay-900/30 rounded-lg border border-ebony-clay-400/10 mx-4 px-0.5"
+            >
+              {frontmatter.date}
+            </div>
+          </div>
+          <div class="flex flex-col w-full gap-4">
+            <slot />
+          </div>
+          <div
+            class="flex flex-row w-full justify-start gap-3 flex-wrap py-3 mx-4"
+          >
+            {
+              frontmatter.tags.map((tag: string) => (
+                <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
+                  {tag}
+                </div>
+              ))
+            }
+          </div>
+          <Divider />
+          <HomeButton />
+          <Links />
+        </main>
+      </div>
+    </div>
+  </body>
 </html>

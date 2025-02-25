@@ -3,12 +3,25 @@ import Card from "@components/Card.astro";
 var projects = await Astro.glob("../pages/projects/*.mdx");
 
 // Sort projects by date in descending order (newest first)
-projects = projects.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-projects = projects.filter(project => project.frontmatter.published);
+projects = projects.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+);
+projects = projects.filter((project) => project.frontmatter.published);
 ---
 
-<div class="flex w-full flex-col items-start">
-    {projects.map((project) => (
-        <Card title={project.frontmatter.title} description={project.frontmatter.description} tags={project.frontmatter.tags} href={project.url} date={project.frontmatter.date}/>
-    ))}
+<div class="flex w-full flex-col items-start gap-4">
+  {
+    projects.map((project) => (
+      <Card
+        title={project.frontmatter.title}
+        description={project.frontmatter.description}
+        tags={project.frontmatter.tags}
+        href={project.url}
+        date={project.frontmatter.date}
+        thumbnail={project.frontmatter.thumbnail}
+      />
+    ))
+  }
 </div>

@@ -1,35 +1,65 @@
 ---
+import { Image } from "astro:assets";
 interface Props {
-    title: string;
-    description: string;
-    tags: string[];
-    href?: string;
-    date: string;
+  title: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  date: string;
+  thumbnail?: string;
 }
 
-const { title, description, tags, href, date} = Astro.props;
+const { title, description, tags, href, date, thumbnail } = Astro.props;
 ---
 
 <body>
-    <a href={href} class="group border-ebony-clay-100/10 border w-full scale-90 hover:scale-[100%] bg-gradient-to-br from-ebony-clay-900 to-ebony-clay-800 hover:from-ebony-clay-400 rounded-md shadow-md transition-all ease duration-300 hover:cursor-pointer">
-        <div class="h-full flex flex-col justify-between py-8 px-4">
-            <div class="text-2xl font-bold text-ebony-clay-400 group-hover:text-ebony-clay-950 group-hover:underline">
-                {title}
-            </div>
-            <div class="h-full text-xl font-medium text-ebony-clay-100/70 py-4 group-hover:text-ebony-clay-950">
-                {description}
-            </div>
-            <div class="flex flex-row justify-end gap-3 flex-wrap">
-                {tags.map(tag => (
-                    <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">{tag}</div>
-                ))}
-            </div>
-            <div class="flex justify-start">
-                <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
-                    {date}
-                </div>
-            </div>
-        </div>
+  <a
+    href={href}
+    class="overflow-hidden relative group border-white/5 border w-full rounded-md transition-all duration-300 hover:mt-4 hover:mb-4 ease-in-out"
+  >
+    <div
+      class="absolute bottom-0 via-ebony-clay-950 hover:via-100% right-0 bg-gradient-to-br from-ebony-clay-900 to-ebony-clay-900 -z-10 min-w-full min-h-full group-hover:bg-gradient-to-br group-hover:from-ebony-clay-900 group-hover:to-ebony-clay-200/0 group-hover:via-ebony-clay-950"
+    >
     </div>
+    {
+      thumbnail && (
+        <Image
+          src={thumbnail}
+          alt="test"
+          title="test"
+          width={128}
+          height={128}
+          class="absolute bottom-0 right-0 w-full -z-20"
+        />
+      )
+    }
+    <div>
+      <div class="h-full flex flex-col justify-between py-4 px-4 z-20">
+        <div
+          class="text-2xl font-bold text-ebony-clay-400 group-hover:underline"
+        >
+          {title}
+        </div>
+        <div class="h-full text-lg text-ebony-clay-100/70 py-4">
+          {description}
+        </div>
+        <div class="flex flex-row justify-end gap-3 flex-wrap">
+          {
+            tags.map((tag) => (
+              <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
+                {tag}
+              </div>
+            ))
+          }
+        </div>
+        <div class="flex justify-start">
+          <div
+            class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 scale-110"
+          >
+            {date}
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
 </body>
-
