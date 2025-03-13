@@ -5,7 +5,7 @@ date: "2024-10-24"
 description: "A devlog about the first game jam I ever took place in (Brackeys Game Jam 2024.2)."
 tags: ["AI", "Game Dev"]
 published: true
-thumbnail: "/src/assets/blog/twister/penguinz1.png"
+thumbnail: "/assets/blog/twister/penguinz1.png"
 ---
 import CodeBlock from '@components/CodeBlock.astro';
 import Code from "@components/Code.astro";
@@ -21,7 +21,7 @@ import { Image } from 'astro:assets';
 
 ---
 
-![A screenshot from the final game.](@assets/blog/twister/penguinz1.png)
+![A screenshot from the final game.](/assets/blog/twister/penguinz1.png)
 
 A few months ago, I decided to participate in my first game jam. It was the end of summer, and I had a week left before starting my final year of university. With my exams done and nothing else on my plate, I opened Itch.io and started browsing for upcoming game jams. That’s when I stumbled upon the **Brackeys Game Jam 2024.2**, which was just about to begin.
 
@@ -41,7 +41,7 @@ As a first-time participant, one big takeaway I’d like to share is this: **joi
 
 The idea for my game wasn’t entirely my own. I’ve always been fascinated by “mass movements” like cancel culture—how they start and develop. While browsing ideas in the Discord chat, one particular message from another participant caught my eye. It said something along the lines of:
 
-![The message mentioned above.](@assets/blog/twister/discord.png)
+![The message mentioned above.](/assets/blog/twister/discord.png)
 
 This immediately sparked an idea for a game. I started thinking about how I could implement it: using AI to evaluate tweets, determining how “angry” your followers are, and figuring out the game loop. The concept wasn’t a traditional, linear game, which meant I had to get creative with how I gamified the experience.
 
@@ -53,11 +53,11 @@ I was still hesitant about fully committing to the jam, so I made a small protot
 
 The first step was adding a simple interface where players could type tweets. I also included a few stat bars, though I wasn’t entirely sure how to use them yet. I was thinking of adding “Bannable” and “Controversial” values, but at this point, everything was random.
 
-![First version.](@assets/blog/twister/image.png)
+![First version.](/assets/blog/twister/image.png)
 
 Next, I added a basic tutorial to set the premise of the game (yes, it was a wall of text—eww, I know).
 
-![The premise of the game.](@assets/blog/twister/intro.png)
+![The premise of the game.](/assets/blog/twister/intro.png)
 
 I also created a login screen that led into the game, though it didn’t really serve a purpose beyond getting users familiar with the interface. I ended up scrapping the “About You” section because I couldn’t find a useful way to leverage it.
 
@@ -79,13 +79,13 @@ This backend solution had other advantages too: I could dynamically adjust how t
 
 **Cost**: I discovered that OpenAI offers a free “moderation” endpoint, which auto-flags content based on various metrics like hate speech, violence, and offensive language.
 
-![Endpoint explaining it was free. Thanks OpenAI!](@assets/blog/twister/freemod.png)
+![Endpoint explaining it was free. Thanks OpenAI!](/assets/blog/twister/freemod.png)
 
-![Moderation values.](@assets/blog/twister/moderation.png)
+![Moderation values.](/assets/blog/twister/moderation.png)
 
 I used this endpoint to create a “low-res flagging” system, where less controversial tweets would be flagged early in the game. As the game progressed, it would switch to a more in-depth “high-res flagging,” using OpenAI to detect not just offensive content, but controversial opinions as well. This helped balance gameplay while also managing costs.
 
-![The (primitive) los res flagging functions.](@assets/blog/twister/scores.png)
+![The (primitive) los res flagging functions.](/assets/blog/twister/scores.png)
 
 ---
 
@@ -135,7 +135,7 @@ When the jam ended, voting began, and I received a lot of positive feedback. Pla
 
 In the end, I was thrilled to rank **#6 in Innovation**! For my first game jam, that was a huge accomplishment.
 
-![Final ranking.](@assets/blog/twister/ranking.png)
+![Final ranking.](/assets/blog/twister/ranking.png)
 
 <Paragraph subtitle="The website says #7, but the original #1 submission was disqualified for manipulating votes in their favour" />
 

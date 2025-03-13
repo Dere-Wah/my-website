@@ -5,7 +5,7 @@ date: "2024-08-31"
 description: "There's a chance you're followed by one of these accounts on Spotify."
 tags: ["Spotify", "Bots"]
 published: true
-thumbnail: "/src/assets/blog/spotify-bot/profile.png"
+thumbnail: "/assets/blog/spotify-bot/profile.png"
 ---
 import CodeBlock from '@components/CodeBlock.astro';
 import Code from "@components/Code.astro";
@@ -21,11 +21,11 @@ import { Image } from 'astro:assets';
 
 # Can You Follow Every Single Person on the Planet on Spotify?
 
-![The bot in question](@assets/blog/spotify-bot/other_profile.png)
+![The bot in question](/assets/blog/spotify-bot/other_profile.png)
 
 A few months ago, during a university lecture, I came across a Twitter post about certain accounts that were seemingly following every single person on Spotify. Naturally, I was curious to see if I was one of their followers. To my surprise, I was! I even asked some of my friends, and they too found these mysterious accounts in their follower lists. But how was this possible?
 
-![My result](@assets/blog/spotify-bot/profile.png)
+![My result](/assets/blog/spotify-bot/profile.png)
 
 If you want to view the bot check out this [**github repo**](https://github.com/Dere-Wah/SpotifyFollowers)
 
@@ -55,11 +55,11 @@ Similarly, on Spotify, you could start with a random "patient zero" user, ideall
 
 Initially, I was thrilled to find an endpoint in the Spotify API documentation that could query user information. Each user object returned by the API included fields like "followers" and "followings," which, according to the documentation, provided lists of all mutual accounts. However, when I tried to use this endpoint, it displayed a message that it was "not available at the moment." 
 
-![Endpoint disabled at the moment](@assets/blog/spotify-bot/null.png)
+![Endpoint disabled at the moment](/assets/blog/spotify-bot/null.png)
 
 My guess is that Spotify disabled this endpoint after people started abusing it to gain followers. But not all hope is lost! Given a user ID, you can still visit their profile page on the Spotify website, go to the `/followers` and `/followings` pages, and extract a list of the first 500 users. While this method isn’t ideal—requiring a browser tab with Selenium running while scraping—it’s still a reliable way to access usernames. Using this approach, I managed to gather about 800,000 unique users.
 
-![One of the many follow lists I scraped](@assets/blog/spotify-bot/scraped.png)
+![One of the many follow lists I scraped](/assets/blog/spotify-bot/scraped.png)
 
 ## Spotify Engineers Are Working to Solve This
 
@@ -67,7 +67,7 @@ The next issue arose when I began sending API requests to follow users. You can 
 
 Spotify's API documentation humorously notes, "Our engineers are doing their best to prevent this from showing up, but if you still see this, whoopsie doopsie, sorry!" Despite my efforts to tweak the bot—adjusting the rate of follow requests and the number of user IDs per request—nothing seemed to help. Eventually, I concluded that Spotify must have implemented countermeasures against spam requests.
 
-![The error in question](@assets/blog/spotify-bot/error500.png)
+![The error in question](/assets/blog/spotify-bot/error500.png)
 
 Interestingly, when I revisited the project a few months later, I noticed more consistent results, with a limit of about 300 follow requests per day. This change was also visible in the app itself! If you send over 300 requests, your latest ones are automatically rejected by the backend. While it’s an interesting limitation, it’s fair considering the social aspect of the app isn’t used that extensively.
 
@@ -75,7 +75,7 @@ Interestingly, when I revisited the project a few months later, I noticed more c
 
 # Spotify, Am I Banned?
 
-![Takedown email. I received 3 of these on 3 different accounts](@assets/blog/spotify-bot/takedown.png)
+![Takedown email. I received 3 of these on 3 different accounts](/assets/blog/spotify-bot/takedown.png)
 
 An amusing part of this journey was that I often received notifications of the termination of my API and Spotify accounts shortly after starting the bot. The funny thing was, the account never actually got terminated! Despite receiving these emails, my account remained active, and the API keys continued to work.
 

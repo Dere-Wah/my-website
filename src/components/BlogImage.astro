@@ -1,8 +1,15 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 const props = Astro.props;
 ---
 
 <div class="flex w-full flex-col items-center">
-    <Image src={props.src} alt={props.alt} title={props.alt} class="shadow-md border-2 border-ebony-clay-950"></Image>
+  <Image
+    src={props.src}
+    alt={props.alt}
+    title={props.alt}
+    width="450"
+    height="10"
+    class="shadow-md border-2 border-ebony-clay-950 aspect-auto"
+  />
 </div>

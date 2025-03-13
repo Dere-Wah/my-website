@@ -5,7 +5,7 @@ date: "2024-08-27"
 description: "An automated youtube channel completely handled by AI."
 tags: ["AI", "Youtube"]
 published: true
-thumbnail: "/src/assets/blog/ai-shorts/yt_banner.jpg"
+thumbnail: "/assets/blog/ai-shorts/tg_approval.png"
 ---
 import CodeBlock from '@components/CodeBlock.astro';
 import Code from "@components/Code.astro";
@@ -19,7 +19,7 @@ import Paragraph from "@components/Paragraph.astro"
 import { Image } from 'astro:assets';
 
 
-![An example of an uploaded video](@assets/blog/ai-shorts/yt_banner.jpg)
+![An example of an uploaded video](/assets/blog/ai-shorts/yt_banner.jpg)
 
 ---
 
@@ -38,7 +38,7 @@ for a generator that would fetch a specific pair of Post & Reply from the popula
 <Paragraph subtitle="This wasn't going to be easy." />
 ---
 # How do you go from a Reddit Post to a Youtube Short?
-![Our first logic map of the generator.](@assets/blog/ai-shorts/project.png)
+![Our first logic map of the generator.](/assets/blog/ai-shorts/project.png)
 Converting from a text document to a well-edited & subtitled video is no easy task. Let's think about this problem, and break it up in single stepts that
 a computer would need to do to accomplish this goal. First of all, we need to access reddit.
 
@@ -66,7 +66,7 @@ After our post object was found and retrieved, we created a thumbnail for the po
 and basically created an image off of this POST element. Our goal was to display the thumbnail as the first part of the video, as if it was a screenshot
 taken off reddit and edited in the short.
 
-![An example thumbnail.](@assets/blog/ai-shorts/thumbnail.png)
+![An example thumbnail.](/assets/blog/ai-shorts/thumbnail.png)
 
 We felt that the number of upvotes & comments wasn't a really necessary detail, so we randomly generated those numbers.
 
@@ -96,7 +96,7 @@ Within this folder, we stored both the thumbnail and the audio files.
 The audio files were named sequentially, like sample1.wav, sample2.wav, and so on, to keep everything organized and easily accessible
  With this setup, we could efficiently manage and retrieve the assets needed for each video.
 
-![File system.](@assets/blog/ai-shorts/file_system.png)
+![File system.](/assets/blog/ai-shorts/file_system.png)
 
 ---
 
@@ -210,7 +210,7 @@ def convert_to_ass(words, folder):
 ```
 
 The resulting file is something like this:
-![Our subtitles.ass file.](@assets/blog/ai-shorts/result.png)
+![Our subtitles.ass file.](/assets/blog/ai-shorts/result.png)
 
 
 ---
@@ -229,7 +229,7 @@ Finally, we added some generic background music, and that was it! We successfull
 # Expanding the Project: Moving to Telegram
 After we finished the initial bot, I realized I wasn't quite satisfied and wanted to take it a step further by moving the entire interface to a Telegram bot.
 
-![The BOT interface, using Telegram Threads](@assets/blog/ai-shorts/tg_interface.png)
+![The BOT interface, using Telegram Threads](/assets/blog/ai-shorts/tg_interface.png)
 
 I developed a bot that monitored any links sent in a specific chat. For each link, the bot would prompt the user to choose the type of video they wanted to generate: Comment, Post, or Post with Top Comments. Here’s how each option worked:
 
@@ -240,7 +240,7 @@ I developed a bot that monitored any links sent in a specific chat. For each lin
 **Post & Top Comments**: The bot would generate the title and thumbnail, then loop through the top comments. It would ask ChatGPT to rate each comment in terms of length, interest, and relevance, selecting the best three or four. The bot would then concatenate different voices, each with distinct subtitle colors, to read these texts sequentially.
 
 
-![Generation Options](@assets/blog/ai-shorts/tg_menu.png)
+![Generation Options](/assets/blog/ai-shorts/tg_menu.png)
 
 Interestingly, the "Post" feature became our most used. We found it to be the most effective, as the "Post & Top Comments" option sometimes produced videos that were too long for YouTube Shorts. Additionally, it could be difficult to distinguish when one comment ended and another began, making the video less engaging.
 
@@ -249,12 +249,12 @@ Interestingly, the "Post" feature became our most used. We found it to be the mo
 # Automation and Review Process
 Once a post was selected, the bot ran the entire process from start to finish, then sent the video back to us on Telegram in a designated pending-videos channel. This allowed us to review the generated videos and manually decide if they were good enough for upload. We could approve or reject each video. If a video was rejected, it would be deleted. Approved videos were sent to a queue folder, which would then be processed for automatic YouTube upload.
 
-![Approving a rendered video.](@assets/blog/ai-shorts/tg_approval.png)
+![Approving a rendered video.](/assets/blog/ai-shorts/tg_approval.png)
 
 I’ll dive into the details of automatic YouTube uploads via Selenium in another post, but suffice to say, it was one of the hardest parts of the project. I wasn’t expecting it to be so challenging, and I had to resort to using a domestic IP address and multiple Selenium attempts to successfully access a YouTube channel and upload a video with specific metadata.
 
 Finally, we set up an "uploaded-videos" channel to notify us of every single upload on the YouTube channel, along with how many videos were left in the queue.
-![Uploads Notification](@assets/blog/ai-shorts/tg_uploads.png)
+![Uploads Notification](/assets/blog/ai-shorts/tg_uploads.png)
 
 ---
 
