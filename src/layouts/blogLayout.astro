@@ -17,41 +17,46 @@ const { frontmatter } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{frontmatter.title}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-900">
-    <div class="px-4 py-14">
-      <div class="flex flex-col items-center">
-        <main class="flex flex-col w-full items-center max-w-[65ch] gap-1">
-          <Header1>{frontmatter.title}</Header1>
-          <div class="flex flex-col justify-start w-full">
-            <Paragraph subtitle={frontmatter.description} />
-          </div>
-          <div class="flex w-full justify-end">
-            <div
-              class="text-ebony-clay-100/80 bg-ebony-clay-900/30 rounded-lg border border-ebony-clay-400/10 mx-4 px-0.5"
-            >
-              {frontmatter.date}
+  <body
+    class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-950 min-h-screen font-['Inter']"
+  >
+    <div class="max-w-3xl mx-auto px-4 py-16">
+      <article class="prose prose-invert max-w-none">
+        <HomeButton />
+        <header class="mb-8">
+          <h1 class="text-4xl font-bold text-white mb-4">
+            {frontmatter.title}
+          </h1>
+          <p class="text-ebony-clay-200 text-lg mb-4">
+            {frontmatter.description}
+          </p>
+          <div class="flex items-center gap-4">
+            <time class="text-ebony-clay-400 text-sm">{frontmatter.date}</time>
+            <div class="flex gap-2">
+              {
+                frontmatter.tags.map((tag: string) => (
+                  <span class="px-2 py-1 bg-ebony-clay-900/50 text-ebony-clay-200 text-sm rounded-md border border-ebony-clay-800">
+                    {tag}
+                  </span>
+                ))
+              }
             </div>
           </div>
-          <div class="flex flex-col w-full gap-4">
-            <slot />
-          </div>
-          <div
-            class="flex flex-row w-full justify-start gap-3 flex-wrap py-3 mx-4"
-          >
-            {
-              frontmatter.tags.map((tag: string) => (
-                <div class="text-ebony-clay-100/80 bg-ebony-clay-900/80 rounded-lg border border-ebony-clay-400/50 px-1 group-hover:text-ebony-clay-400 scale-110">
-                  {tag}
-                </div>
-              ))
-            }
-          </div>
-          <Divider />
-          <HomeButton />
+        </header>
+
+        <div class="space-y-6">
+          <slot />
+        </div>
+
+        <footer class="mt-12 pt-8 border-t border-ebony-clay-800">
           <Links />
-        </main>
-      </div>
+        </footer>
+      </article>
     </div>
   </body>
 </html>

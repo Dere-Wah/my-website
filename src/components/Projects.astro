@@ -11,7 +11,7 @@ projects = projects.sort(
 projects = projects.filter((project) => project.frontmatter.published);
 ---
 
-<div class="flex w-full flex-col items-start gap-4">
+<div class="flex w-full flex-col items-start gap-4 md:px-16">
   {
     projects.map((project) => (
       <Card

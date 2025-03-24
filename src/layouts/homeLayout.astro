@@ -13,15 +13,21 @@ import SpeedInsights from "@vercel/speed-insights/astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>derewah.dev</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-ebony-clay-950">
-    <div class="py-14 px-6 w-full">
-      <div class="flex flex-col items-center w-full">
-        <main class="flex flex-col w-full items-start max-w-[65ch]">
+  <body
+    class="bg-gradient-to-b from-ebony-clay-950 to-ebony-clay-950 min-h-screen font-['Inter']"
+  >
+    <div class="max-w-3xl mx-auto px-4 py-16">
+      <main class="space-y-12">
+        <div class="space-y-8">
           <Greeting client:load />
           <slot />
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   </body>
 </html>

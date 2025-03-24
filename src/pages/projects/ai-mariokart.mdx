@@ -83,7 +83,35 @@ After initial tests and discussions with the SM64 community, I concluded the sco
 
 ---
 
-## Dataset Requirements for Training
+## Building the Dataset: SM64 Challenges
+
+Since no pre-existing SM64 dataset was available, I built a simple program to record my inputs and gameplay frames. You can find the code on [**`my GitHub`**](https://github.com/Dere-Wah/sm64-dataset). However, this approach posed significant challenges:
+
+- **Time-Intensive**: Capturing even a small portion of the game’s map took hours of manual effort.
+- **Insufficient Data**: Initial tests with just a few minutes of gameplay led to poor results.  
+   *(Check out the preliminary output: [**`YouTube link`**](https://youtu.be/2GYaArkV3Ig)).*
+
+![The first version of AISM64.](public/assets/blog/ai-mariokart/sm64ai.gif)
+
+This made it clear that training a robust NN for SM64 required either a team effort or a much larger dataset.
+
+---
+
+## Pivoting to Mario Kart
+
+After evaluating alternatives, I settled on **Mario Kart 64 (MK64)**. Here’s why MK64 proved a better fit:
+
+1. **Easier Dataset Collection**: Existing AI models for MK64 could automate gameplay recording, significantly reducing manual effort.
+2. **Simpler Controls**: Limited steering actions (left/right) and no complex camera movements make it ideal for NN training.
+3. **Low Resolution**: The game’s graphics look good even when scaled down.
+
+Although SM64 remains a viable option with proper resources, MK64 was the better choice for a solo project. As a side note, I briefly considered a community-driven approach to collect SM64 data via a plugin for the **SM64coopEX** community, but this was outside my project’s scope.
+
+---
+
+# Dataset Collection for Mario Kart 64
+
+After defining a clear plan and shifting my focus to **Mario Kart 64 (MK64)**, I felt renewed confidence. This section covers how I set up the data collection process, including the challenges of adapting the **NeuralKart** emulator and generating a robust dataset.
 
 Understanding the dataset format is critical to training the NN. The DIAMOND model's dataset uses **HDF5** files, structured as follows:
 
@@ -116,38 +144,6 @@ action_vector = [1, 0, 0, 1]
 The original DIAMOND dataset included additional data like memory states, which I ignored because this model only simulates gameplay, not game logic.
 
 For more on the dataset format, check out the [**`CSGO dataset guide`**](https://github.com/TeaPearce/Counter-Strike_Behavioural_Cloning).
-
----
-
-## Building the Dataset: SM64 Challenges
-
-Since no pre-existing SM64 dataset was available, I built a simple program to record my inputs and gameplay frames. You can find the code on [**`my GitHub`**](https://github.com/Dere-Wah/sm64-dataset). However, this approach posed significant challenges:
-
-- **Time-Intensive**: Capturing even a small portion of the game’s map took hours of manual effort.
-- **Insufficient Data**: Initial tests with just a few minutes of gameplay led to poor results.  
-   *(Check out the preliminary output: [**`YouTube link`**](https://youtu.be/2GYaArkV3Ig)).*
-
-![The first version of AISM64.](public/assets/blog/ai-mariokart/sm64ai.gif)
-
-This made it clear that training a robust NN for SM64 required either a team effort or a much larger dataset.
-
----
-
-## Pivoting to Mario Kart
-
-After evaluating alternatives, I settled on **Mario Kart 64 (MK64)**. Here’s why MK64 proved a better fit:
-
-1. **Easier Dataset Collection**: Existing AI models for MK64 could automate gameplay recording, significantly reducing manual effort.
-2. **Simpler Controls**: Limited steering actions (left/right) and no complex camera movements make it ideal for NN training.
-3. **Low Resolution**: The game’s graphics look good even when scaled down.
-
-Although SM64 remains a viable option with proper resources, MK64 was the better choice for a solo project. As a side note, I briefly considered a community-driven approach to collect SM64 data via a plugin for the **SM64coopEX** community, but this was outside my project’s scope.
-
----
-
-# Dataset Collection for Mario Kart 64
-
-After defining a clear plan and shifting my focus to **Mario Kart 64 (MK64)**, I felt renewed confidence. This section covers how I set up the data collection process, including the challenges of adapting the **NeuralKart** emulator and generating a robust dataset.
 
 ---
 
