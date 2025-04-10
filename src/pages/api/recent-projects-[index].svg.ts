@@ -12,6 +12,7 @@ export async function GET({ params }: APIContext) {
           status: 400,
           headers: {
             "Content-Type": "application/json",
+            "Cache-Control": "no-cache, no-store, private, must-revalidate",
           },
         }
       );
@@ -48,6 +49,7 @@ export async function GET({ params }: APIContext) {
         {
           status: 404,
           headers: {
+            "Cache-Control": "no-cache, no-store, private, must-revalidate",
             "Content-Type": "application/json",
           },
         }
@@ -212,7 +214,7 @@ export async function GET({ params }: APIContext) {
       status: 200,
       headers: {
         "Content-Type": "image/svg+xml",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Cache-Control": "no-cache, no-store, private, must-revalidate",
         Vary: "Accept-Encoding",
       },
     });
@@ -221,6 +223,7 @@ export async function GET({ params }: APIContext) {
       status: 500,
       headers: {
         "Content-Type": "application/json",
+        "Cache-Control": "no-cache, no-store, private, must-revalidate",
       },
     });
   }
