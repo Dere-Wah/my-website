@@ -83,13 +83,13 @@ export async function GET({ params }: APIContext) {
       return lines;
     }
 
-    const titleLines = wrapWords(project.title, 40);
-    const descLines = wrapWords(project.description, 60);
+    const titleLines = wrapWords(project.title, 45);
+    const descLines = wrapWords(project.description, 65);
 
     // Tags auto-wrap with dynamic width
-    const TAG_HEIGHT = 24;
-    const PADDING_BETWEEN_TAGS = 10;
-    const PADDING_AROUND_TAG_TEXT = 16;
+    const TAG_HEIGHT = 22;
+    const PADDING_BETWEEN_TAGS = 8;
+    const PADDING_AROUND_TAG_TEXT = 14;
     const MAX_WIDTH = 540;
 
     let tagRows: string[][] = [];
@@ -110,8 +110,8 @@ export async function GET({ params }: APIContext) {
     if (currentRow.length) tagRows.push(currentRow);
 
     const TITLE_LINE_HEIGHT = 26;
-    const DESC_LINE_HEIGHT = 22;
-    const TAG_VERTICAL_SPACING = 10;
+    const DESC_LINE_HEIGHT = 20;
+    const TAG_VERTICAL_SPACING = 8;
 
     // Compute dynamic Y offsets
     const titleHeight = titleLines.length * TITLE_LINE_HEIGHT;
@@ -120,7 +120,7 @@ export async function GET({ params }: APIContext) {
     const tagsHeight = tagRows.length * (TAG_HEIGHT + TAG_VERTICAL_SPACING);
 
     // Add base paddings
-    const totalVerticalPadding = 50 + 20; // initial top + extra bottom
+    const totalVerticalPadding = 40 + 20; // initial top + extra bottom
 
     const svgHeight =
       titleHeight +
@@ -130,52 +130,76 @@ export async function GET({ params }: APIContext) {
       tagsHeight +
       totalVerticalPadding;
 
+    // GitHub-like colors
+    const COLORS = {
+      background: "#0d1117",
+      border: "#30363d",
+      title: "#e6edf3",
+      description: "#c9d1d9",
+      date: "#8b949e",
+      tagBackground: "#21262d",
+      tagBorder: "#30363d",
+      tagText: "#8b949e",
+    };
+
     const svg = `
-<svg width="600" height="${svgHeight}" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0%" stop-color="#1e293b" />
-			<stop offset="100%" stop-color="#0f172a" />
-		</linearGradient>
-		<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-			<feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
-		</filter>
-	</defs>
+<svg width="500" height="${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000000" flood-opacity="0.2" />
+    </filter>
+  </defs>
 
-	<rect width="100%" height="100%" fill="url(#bgGradient)" rx="20" />
+  <!-- Main card -->
+  <rect width="100%" height="100%" fill="${COLORS.background}" rx="6" 
+    stroke="${COLORS.border}" stroke-width="1" filter="url(#cardShadow)" />
 
-	<!-- Title -->
-	<text x="30" y="50" font-family="Verdana" font-size="22" fill="#cbd5e1" font-weight="bold" filter="url(#shadow)">
-		${titleLines.map((line, i) => `<tspan x="30" dy="${i === 0 ? 0 : 26}">${line}</tspan>`).join("")}
-	</text>
+  <!-- Repository icon -->
+  <g transform="translate(24, 24) scale(0.9)">
+    <path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" 
+      fill="${COLORS.description}" />
+  </g>
 
-	<!-- Description -->
-	<text x="30" y="${90 + (titleLines.length - 1) * 26}" font-family="Verdana" font-size="16" fill="#94a3b8">
-		${descLines.map((line, i) => `<tspan x="30" dy="${i === 0 ? 0 : 22}">${line}</tspan>`).join("")}
-	</text>
+  <!-- Title -->
+  <text x="52" y="40" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" 
+    font-size="18" fill="${COLORS.title}" font-weight="600">
+    ${titleLines.map((line, i) => `<tspan x="52" dy="${i === 0 ? 0 : TITLE_LINE_HEIGHT}">${line}</tspan>`).join("")}
+  </text>
 
-	<!-- Date -->
-	<text x="30" y="${140 + (titleLines.length - 1) * 26 + (descLines.length - 1) * 22}" font-family="Verdana" font-size="14" fill="#64748b">
-		📅 ${new Date(project.date).toLocaleDateString()}
-	</text>
+  <!-- Description -->
+  <text x="24" y="${80 + (titleLines.length - 1) * TITLE_LINE_HEIGHT}" 
+    font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" 
+    font-size="14" fill="${COLORS.description}">
+    ${descLines.map((line, i) => `<tspan x="24" dy="${i === 0 ? 0 : DESC_LINE_HEIGHT}">${line}</tspan>`).join("")}
+  </text>
 
-	<!-- Tags -->
-	${tagRows
+  <!-- Date -->
+  <text x="24" y="${120 + (titleLines.length - 1) * TITLE_LINE_HEIGHT + (descLines.length - 1) * DESC_LINE_HEIGHT}" 
+    font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" 
+    font-size="12" fill="${COLORS.date}">
+    <tspan>Updated on ${new Date(project.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</tspan>
+  </text>
+
+  <!-- Tags -->
+  ${tagRows
     .map((row, rowIndex) => {
-      let x = 30;
+      let x = 24;
       const y =
-        160 +
-        (titleLines.length - 1) * 26 +
-        (descLines.length - 1) * 22 +
-        rowIndex * (TAG_HEIGHT + 10);
+        150 +
+        (titleLines.length - 1) * TITLE_LINE_HEIGHT +
+        (descLines.length - 1) * DESC_LINE_HEIGHT +
+        rowIndex * (TAG_HEIGHT + TAG_VERTICAL_SPACING);
       return row
         .map((tag) => {
           const width = estimateTextWidth(tag, 12, PADDING_AROUND_TAG_TEXT);
           const tagSVG = `
-			<g>
-				<rect x="${x}" y="${y}" rx="6" ry="6" width="${width}" height="${TAG_HEIGHT}" fill="#1e293b" stroke="#475569" stroke-width="1" />
-				<text x="${x + 8}" y="${y + 16}" font-family="Verdana" font-size="12" fill="#e2e8f0">${tag}</text>
-			</g>`;
+      <g>
+        <rect x="${x}" y="${y}" rx="12" ry="12" width="${width}" height="${TAG_HEIGHT}" 
+          fill="${COLORS.tagBackground}" stroke="${COLORS.tagBorder}" stroke-width="1" />
+        <text x="${x + PADDING_AROUND_TAG_TEXT / 2}" y="${y + TAG_HEIGHT - 7}" 
+          font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" 
+          font-size="12" fill="${COLORS.tagText}">${tag}</text>
+      </g>`;
           x += width + PADDING_BETWEEN_TAGS;
           return tagSVG;
         })
