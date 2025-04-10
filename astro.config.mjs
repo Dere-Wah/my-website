@@ -5,8 +5,11 @@ import react from "@astrojs/react";
 
 import mdx from "@astrojs/mdx";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), icon(), react(), mdx()],
-  output: "server"
+  output: "server",
+  adapter: vercel()
 });
