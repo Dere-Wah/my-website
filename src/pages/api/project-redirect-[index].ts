@@ -1,8 +1,7 @@
 import { type APIContext } from "astro";
 
 // Discord webhook URL (replace with your actual webhook URL)
-const DISCORD_WEBHOOK_URL =
-  "https://discord.com/api/webhooks/1360170718163111946/osZIqxmV9c90zbPREorIQAS_UW1ijS_AWMgjbBDOvJ3zmKMdCbfSTsbtDwnsTVzJPUrl";
+const DISCORD_WEBHOOK_URL = process.env.NOTIFY_WEBHOOK || "";
 
 /**
  * Sends a notification to Discord when someone visits a blog post
